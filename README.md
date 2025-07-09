@@ -20,6 +20,11 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+### Como correr un ejemplo
+
+```bash
+python3 gradient_descent.py
+```
 
 
 **¡AVISO!** Para evitar comprar falsificaciones en Amazon, haga clic en **[Ver todas las opciones de compra](https://www.amazon.com/gp/offer-listing/199957950X/)** y elija "Amazon.com" y no un vendedor tercero.

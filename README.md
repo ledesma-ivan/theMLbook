@@ -3,9 +3,6 @@ El código Python para reproducir las ilustraciones de [The Hundred-Page Machine
 
 ![](http://themlbook.com/images/og-image3.png)
 
-**¡AVISO!** Para evitar comprar falsificaciones en Amazon, haga clic en **[Ver todas las opciones de compra](https://www.amazon.com/gp/offer-listing/199957950X/)** y elija "Amazon.com" y no un vendedor tercero.
-
-
 ### Creo entorno virtual
 
 ```bash
@@ -23,3 +20,6 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+
+
+**¡AVISO!** Para evitar comprar falsificaciones en Amazon, haga clic en **[Ver todas las opciones de compra](https://www.amazon.com/gp/offer-listing/199957950X/)** y elija "Amazon.com" y no un vendedor tercero.

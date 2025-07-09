@@ -9,7 +9,7 @@ El código Python para reproducir las ilustraciones de [The Hundred-Page Machine
 ### Creo entorno virtual
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 ```
 
 ### Activo el entorno

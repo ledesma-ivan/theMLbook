@@ -7,18 +7,17 @@ El código Python para reproducir las ilustraciones de [The Hundred-Page Machine
 
 
 ### Creo entorno virtual
-''' 
+
+```bash
 python -m venv venv
-'''
 
 ### Activo el entorno
 
-'''
+```bash
 source venv/bin/activate
-'''
 
 ### Instalo los requirimientos para este proyecto.
 
-'''
+```bash
 pip install -r requirements.txt
 '''

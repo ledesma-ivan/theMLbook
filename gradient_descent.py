@@ -1,15 +1,31 @@
 from __future__ import print_function
 import numpy as np
 import matplotlib.pyplot as plt
+import pathlib
 
 import matplotlib
 matplotlib.rcParams['mathtext.fontset'] = 'stix'
 matplotlib.rcParams['font.family'] = 'STIXGeneral'
 matplotlib.rcParams.update({'font.size': 18})
 
+# constants for columns in data.txt
+TV_COL=1;
+RADIO_COL=2;
+PAPER_COL=3;
+SALES_COL=4
+
+# platform agnostic path to the output directory
+output_dir = pathlib.Path.cwd() / 'Illustrations'
+output_dir.mkdir(parents=True, exist_ok=True)
 
 def plot_original_data():
-    x, y = np.loadtxt("data.txt", delimiter= "\t", unpack = True)
+    x, y = np.loadtxt(
+        "data.txt",
+        skiprows=1,
+        usecols=(RADIO_COL, SALES_COL),
+        delimiter= ",",
+        unpack = True,
+    )
 
     plt.scatter(x, y, color='#1f77b4', marker='o')
 
@@ -19,9 +35,9 @@ def plot_original_data():
     #plt.show()
     fig1 = plt.gcf()
     fig1.subplots_adjust(top = 0.98, bottom = 0.1, right = 0.98, left = 0.08, hspace = 0, wspace = 0)
-    fig1.savefig('../../Illustrations/gradient_descent-1.eps', format='eps', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
-    fig1.savefig('../../Illustrations/gradient_descent-1.pdf', format='pdf', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
-    fig1.savefig('../../Illustrations/gradient_descent-1.png', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
+    fig1.savefig(output_dir / 'gradient_descent-1.eps', format='eps', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
+    fig1.savefig(output_dir / 'gradient_descent-1.pdf', format='pdf', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
+    fig1.savefig(output_dir / 'gradient_descent-1.png', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
 
 def update_w_and_b(spendings, sales, w, b, alpha):
     dr_dw = 0.0
@@ -57,9 +73,9 @@ def train(spendings, sales, w, b, alpha, epochs):
             #plt.show()
             fig1 = plt.gcf()
             fig1.subplots_adjust(top = 0.98, bottom = 0.1, right = 0.98, left = 0.08, hspace = 0, wspace = 0)
-            fig1.savefig('../../Illustrations/gradient_descent-' + str(image_counter) + '.eps', format='eps', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
-            fig1.savefig('../../Illustrations/gradient_descent-' + str(image_counter) + '.pdf', format='pdf', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
-            fig1.savefig('../../Illustrations/gradient_descent-' + str(image_counter) + '.png', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
+            fig1.savefig(output_dir / ('gradient_descent-' + str(image_counter) + '.eps'), format='eps', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
+            fig1.savefig(output_dir / ('gradient_descent-' + str(image_counter) + '.pdf'), format='pdf', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
+            fig1.savefig(output_dir / ('gradient_descent-' + str(image_counter) + '.png'), dpi=1000, bbox_inches = 'tight', pad_inches = 0)
             image_counter += 1
     return w, b
 
@@ -70,8 +86,15 @@ def loss(spendings, sales, w, b):
         total_error += (sales[i] - (w*spendings[i] + b))**2
     return total_error / N
 
-x, y = np.loadtxt("data.txt", delimiter= "\t", unpack = True)
-#w, b = train(x, y, 0.0, 0.0, 0.001, 15000)
+x, y = np.loadtxt(
+    "data.txt",
+    skiprows=1,
+    usecols=(RADIO_COL, SALES_COL),
+    delimiter= ",",
+    unpack = True,
+)
+
+w, b = train(x, y, 0.0, 0.0, 0.001, 15000)
 
 plot_original_data()
 
